@@ -15,7 +15,7 @@ MAX_ITEMS = 60
 
 def fetch(url):
     req = urllib.request.Request(url, headers={'User-Agent': UA})
-    with urllib.request.urlopen(req, timeout=60) as r:
+    with urllib.request.urlopen(req, timeout=90) as r:
         raw = r.read(); ct = r.headers.get('Content-Type','')
     m = re.search(r'charset=([\w-]+)', ct) or re.search(rb'charset=["\']?([\w-]+)', raw[:3000])
     enc = (m.group(1).decode() if isinstance(m.group(1), bytes) else m.group(1)) if m else 'utf-8'
@@ -89,12 +89,13 @@ def main():
     for s in sites:
         sp = os.path.join(STATE, s['id'] + '.json')
         st = json.load(open(sp, encoding='utf-8')) if os.path.exists(sp) else {'seen': {}, 'items': []}
-        first = not st['seen']; new = 0
+        first = not st.get('init'); new = 0; ok_pages = 0
         for page in s['pages']:
             try:
                 links = extract(page, fetch(page))
             except Exception as e:
                 report.append(f"NG {s['name']} {page} {e}"); continue
+            ok_pages += 1
             for u, label in links.items():
                 if u in st['seen']: continue
                 st['seen'][u] = label
@@ -102,11 +103,13 @@ def main():
                     st['items'].insert(0, {'title': f"【{s['name']}】{label}", 'url': u, 'site': s['name'], 'page': page,
                                            'date': format_datetime(datetime.now(timezone.utc))}); new += 1
             time.sleep(2)
+        if ok_pages:
+            st['init'] = True
         st['items'] = st['items'][:MAX_ITEMS]
         json.dump(st, open(sp, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
         open(os.path.join(OUT, s['id'] + '.xml'), 'w', encoding='utf-8').write(rss(s['name'], s['pages'][0], st['items']))
         all_items += st['items']
-        report.append(f"OK {s['name']} 既知{len(st['seen'])}件 新規{new}件" + ('（初回登録）' if first else ''))
+        report.append(f"{'OK' if ok_pages else 'NG'} {s['name']} 既知{len(st['seen'])}件 新規{new}件" + ('（初回登録）' if first and ok_pages else ''))
     all_items.sort(key=lambda x: datetime.strptime(x['date'], '%a, %d %b %Y %H:%M:%S %z'), reverse=True)
     open(os.path.join(OUT, 'all.xml'), 'w', encoding='utf-8').write(rss('小児科関連学会 ガイドライン更新（まとめ）', 'https://github.com', all_items[:MAX_ITEMS]))
     print('\n'.join(report))
