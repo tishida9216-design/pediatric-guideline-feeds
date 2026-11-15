@@ -14,6 +14,9 @@ jobs:
         with: { python-version: '3.12' }
       - run: pip install beautifulsoup4
       - run: python make_feeds.py
+        continue-on-error: true
+      - run: python extra_feeds.py
+        continue-on-error: true
       - run: |
           git config user.name "feed-bot"
           git config user.email "feed-bot@users.noreply.github.com"
