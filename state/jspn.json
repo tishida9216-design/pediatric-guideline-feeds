@@ -35,5 +35,6 @@
   "https://jspn.sakura.ne.jp/guideline/pdf/20120620_01.pdf": "学校検尿のすべて 指導区分の変更（2011年度）",
   "https://theipna.org/resources/guidelines/": "IPNA guideline"
  },
- "items": []
+ "items": [],
+ "init": true
 }

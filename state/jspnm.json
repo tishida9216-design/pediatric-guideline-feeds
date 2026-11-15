@@ -10,5 +10,6 @@
   "https://www.jspnm.jp/modules/guidelines/index.php?content_id=14": "先天性風疹症候群（CRS）診療マニュアル 胎児輸血実施マニュアル A領域 B領域 C領域",
   "https://www.jspnm.jp/modules/guidelines/index.php?content_id=15": "先天性風疹症候群（CRS）診療マニュアル 胎児輸血実施マニュアル A領域 B領域 C領域"
  },
- "items": []
+ "items": [],
+ "init": true
 }

@@ -43,5 +43,6 @@
   "https://www.childneuro.jp/uploads/files/about/20080325.pdf": "抗てんかん薬の後発医薬品への切り替えに関する日本小児神経学会の提言",
   "https://www.childneuro.jp/uploads/files/about/20040716.pdf": "「子どもに及ばすメディアの影響」について"
  },
- "items": []
+ "items": [],
+ "init": true
 }

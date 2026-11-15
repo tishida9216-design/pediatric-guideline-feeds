@@ -25,5 +25,6 @@
   "https://jsimd.net/pdf/manual/home_enzyme_replacement_therapy_manual_for_pharmacists.pdf": "在宅酵素補充療法マニュアル（薬剤師用）第1版",
   "https://jsimd.net/pdf/manual/home_enzyme_replacement_therapy_implementation_manual_for_home_medical_use.pdf": "在宅酵素補充療法実施マニュアル（在宅医用）第1版"
  },
- "items": []
+ "items": [],
+ "init": true
 }

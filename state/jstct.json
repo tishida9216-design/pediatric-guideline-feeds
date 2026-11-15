@@ -92,5 +92,6 @@
   "https://www.jstct.or.jp/uploads/files/guideline/04_01_ltfu.pdf": "移植後長期フォローアップ（2017年3月）",
   "https://www.jstct.or.jp/uploads/files/guideline/oral.pdf": "造血細胞移植患者の口腔内管理に関する指針（2022年11月）"
  },
- "items": []
+ "items": [],
+ "init": true
 }

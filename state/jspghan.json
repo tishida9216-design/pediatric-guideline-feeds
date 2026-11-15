@@ -15,5 +15,6 @@
   "https://www.jspghan.org/guide/milk.html": "特殊ミルクガイドライン[2012]",
   "https://www.jspghan.org/guide/pvht_guide.html": "小児ウイルス性肝炎移行期マニュアル"
  },
- "items": []
+ "items": [],
+ "init": true
 }
